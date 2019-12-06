@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -21,6 +25,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    // Enables data binding.
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -32,4 +41,26 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    // Room and Lifecycle dependencies
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
+    // Support libraries
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "androidx.fragment:fragment:1.0.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
+
+    // Android KTX
+    implementation 'androidx.core:core-ktx:1.0.1'
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+
+    // Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
 }
