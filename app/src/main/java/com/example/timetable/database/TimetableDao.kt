@@ -22,5 +22,8 @@ interface TimetableDao {
     fun clear()
 
     @Query("select * from timetable order by id desc")
-    fun getAllTimetable(): LiveData<List<Timetable>>
+    fun getAllLessons(): LiveData<List<Timetable>>
+
+    @Query("select * from timetable where day = :day order by position")
+    fun getAllLessonsInDay(day: String): LiveData<List<Timetable>>
 }

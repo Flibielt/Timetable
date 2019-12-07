@@ -13,8 +13,8 @@ data class Timetable(
     @ColumnInfo(name = "lesson_id")
     var lessonId: Long = 0L,
 
-    @ColumnInfo(name = "day_id")
-    var dayId: Long = 0L,
+    @ColumnInfo(name = "day")
+    var day: String,
 
     @ColumnInfo(name = "position")
     var position: Int = 0
