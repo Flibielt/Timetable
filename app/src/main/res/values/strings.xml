@@ -5,4 +5,14 @@
     <string name="clear_lessons">Clear lessons</string>
 
     <string name="view_lessons">View lessons</string>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
 </resources>

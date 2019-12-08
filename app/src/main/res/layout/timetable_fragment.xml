@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_lesson_button">
+            app:layout_constraintTop_toBottomOf="@+id/day_spinner">
 
             <!-- In the TextView, we can access the nightsString LiveData,
                  which keeps it displayed and updated in the TextView
@@ -43,6 +43,17 @@
         <!-- With data binding and LiveData, we can track the buttons' visibility states
              from the ViewModel. The click handler is in the ViewModel as well, and
              you can set it for the Views using this lambda pattern. -->
+
+        <Spinner
+            android:id="@+id/day_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_lesson_button"
+            android:entries="@array/days"/>
 
         <Button
             android:id="@+id/list_lessons_button"
