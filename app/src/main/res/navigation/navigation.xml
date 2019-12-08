@@ -11,6 +11,11 @@
         android:label="TimetableFragment"
         tools:layout="@layout/timetable_fragment">
 
+        <action
+            android:id="@+id/action_time_table_fragment_to_lesson_fragment"
+            app:destination="@id/lesson_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right"/>
     </fragment>
 
     <fragment
@@ -18,6 +23,11 @@
         android:name="com.example.timetable.lesson.LessonFragment"
         android:label="LessonFragment"
         tools:layout="@layout/lesson_fragment">
-
+        <action
+            android:id="@+id/action_lesson_fragment_to_time_table_fragment"
+            app:destination="@id/time_table_fragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/time_table_fragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
