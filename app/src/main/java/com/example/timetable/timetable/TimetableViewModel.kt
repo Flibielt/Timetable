@@ -22,8 +22,15 @@ class TimetableViewModel (
     private val lessons = database.getAllLessons()
     private val _navigateToLesson = MutableLiveData<Timetable>()
 
+    val navigateToLesson: LiveData<Timetable>
+        get() = _navigateToLesson
+
     fun getLessonName(lessonId: Long): String? {
         return lessonDao.get(lessonId)?.name
+    }
+
+    fun doneNavigating() {
+        _navigateToLesson.value = null
     }
 
     /**

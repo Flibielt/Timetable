@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.timetable.database.LessonDao
 import com.example.timetable.database.TimetableDao
-import com.example.timetable.timetable.TimetableViewModel
 import java.lang.IllegalArgumentException
 
 class LessonViewModelFactory (
@@ -14,7 +13,7 @@ class LessonViewModelFactory (
     private val application: Application) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(TimetableViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(LessonViewModel::class.java)) {
             return LessonViewModel(lessonDataSource, timetableDataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

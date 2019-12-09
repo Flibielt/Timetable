@@ -9,6 +9,8 @@
     <string name="lesson_position">Lesson position</string>
     <string name="create_lesson">Create Lesson</string>
 
+    <string name="cleared_message">All data is cleared</string>
+
     <string-array name="days">
         <item>Monday</item>
         <item>Tuesday</item>

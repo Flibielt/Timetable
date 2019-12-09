@@ -23,6 +23,9 @@
         android:name="com.example.timetable.lesson.LessonFragment"
         android:label="LessonFragment"
         tools:layout="@layout/lesson_fragment">
+        <argument
+            android:name="timetableKey"
+            app:argType="long"/>
         <action
             android:id="@+id/action_lesson_fragment_to_time_table_fragment"
             app:destination="@id/time_table_fragment"

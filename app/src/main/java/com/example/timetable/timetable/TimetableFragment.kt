@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.example.timetable.R
 import com.example.timetable.database.TimetableDatabase
 import com.example.timetable.databinding.TimetableFragmentBinding
@@ -33,7 +35,26 @@ class TimetableFragment : Fragment() {
         binding.timetableViewModel = timetableViewModel
         binding.setLifecycleOwner(this)
 
-        //todo: navigation
+        timetableViewModel.navigateToLesson.observe(this, Observer { timetable ->
+            timetable?.let {
+                this.findNavController().navigate(
+                    TimetableFragmentDirections
+                        .actionTimeTableFragmentToLessonFragment(timetable.id))
+                timetableViewModel.doneNavigating()
+            }
+        })
+
+        timetableViewModel.showSnackBarEvent.observe(this, Observer {
+            if (it == true) {
+                Snackbar.make(
+                    activity!!.findViewById(android.R.id.content),
+                    getString(R.string.cleared_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+
+                timetableViewModel.doneShowingSnackbar()
+            }
+        })
 
         return binding.root
     }
