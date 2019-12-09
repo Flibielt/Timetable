@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.timetable.database.Lesson
 import com.example.timetable.database.LessonDao
 import com.example.timetable.database.Timetable
@@ -34,6 +35,10 @@ class TimetableViewModel (
 
     val showSnackBarEvent: LiveData<Boolean>
         get() = _showSnackbarEvent
+
+    val clearButtonVisible = Transformations.map(lessons) {
+        it?.isNotEmpty()
+    }
 
     /**
      * Call this immediately after calling `show()` on a toast.
