@@ -4,13 +4,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.timetable.database.Lesson
 import com.example.timetable.database.LessonDao
 import com.example.timetable.database.Timetable
 import com.example.timetable.database.TimetableDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class TimetableViewModel (
     val database: TimetableDao,
@@ -19,8 +17,9 @@ class TimetableViewModel (
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private var lesson = MutableLiveData<Timetable?>()
+    private var timetableEntry = MutableLiveData<Timetable?>()
     private val lessons = database.getAllLessons()
+    private val _navigateToLesson = MutableLiveData<Timetable>()
 
     fun getLessonName(lessonId: Long): String? {
         return lessonDao.get(lessonId)?.name
@@ -53,6 +52,42 @@ class TimetableViewModel (
     private fun initializeTonight() {
         uiScope.launch {
             //todo get something from the database
+        }
+    }
+
+    fun onAddNewLesson() {
+        uiScope.launch {
+            val newTimetableEntry = Timetable()
+            //todo: set day from spinner
+            insert(newTimetableEntry)
+            _navigateToLesson.value = newTimetableEntry
+        }
+    }
+
+    fun onClear() {
+        uiScope.launch {
+            clear()
+            timetableEntry.value = null
+            _showSnackbarEvent.value = true
+        }
+    }
+
+
+    private suspend fun insert(timetableEntry: Timetable) {
+        withContext(Dispatchers.IO) {
+            database.insert(timetableEntry)
+        }
+    }
+
+    private suspend fun update(timetableEntry: Timetable) {
+        withContext(Dispatchers.IO) {
+            database.update(timetableEntry)
+        }
+    }
+
+    private suspend fun clear() {
+        withContext(Dispatchers.IO) {
+            database.clear()
         }
     }
 }
