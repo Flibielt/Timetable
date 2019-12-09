@@ -8,13 +8,14 @@ import com.example.timetable.database.TimetableDao
 import java.lang.IllegalArgumentException
 
 class LessonViewModelFactory (
+    private val timetableEntryKey: Long = 0L,
     private val lessonDataSource: LessonDao,
     private val timetableDataSource: TimetableDao,
     private val application: Application) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LessonViewModel::class.java)) {
-            return LessonViewModel(lessonDataSource, timetableDataSource, application) as T
+            return LessonViewModel(timetableEntryKey, lessonDataSource, timetableDataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
