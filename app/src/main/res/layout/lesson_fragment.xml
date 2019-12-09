@@ -11,7 +11,8 @@
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".lesson.LessonViewModel">
 
         <TextView
             android:layout_width="match_parent"
@@ -69,8 +70,6 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
             android:layout_marginBottom="@dimen/margin"
-            android:enabled="@{sleepTrackerViewModel.clearButtonVisible}"
-            android:onClick="@{() -> sleepTrackerViewModel.onClear()}"
             android:text="@string/create_lesson"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
