@@ -107,4 +107,9 @@ class TimetableViewModel (
             database.clear()
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }
