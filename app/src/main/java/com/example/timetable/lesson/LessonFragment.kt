@@ -32,10 +32,13 @@ class LessonFragment : Fragment() {
         binding.lessonViewModel = lessonViewModel
 
         lessonViewModel.navigateToTimetable.observe(this, Observer {
-            this.findNavController().navigate(
-                LessonFragmentDirections.actionLessonFragmentToTimeTableFragment())
+            if (it == true) {
+                this.findNavController().navigate(
+                    LessonFragmentDirections.actionLessonFragmentToTimeTableFragment()
+                )
 
-            lessonViewModel.doneNavigating()
+                lessonViewModel.doneNavigating()
+            }
         })
 
         return binding.root

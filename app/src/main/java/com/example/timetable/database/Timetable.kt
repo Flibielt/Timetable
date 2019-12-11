@@ -14,8 +14,5 @@ data class Timetable(
     var lessonId: Long = 0L,
 
     @ColumnInfo(name = "day")
-    var day: String = "Monday",
-
-    @ColumnInfo(name = "position")
-    var position: Int = 0
+    var day: String = "Someday"
 )

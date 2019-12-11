@@ -63,21 +63,32 @@ class TimetableViewModel (
     }
 
     init {
-        initializeTonight()
+        initializeTimetable()
     }
 
-    private fun initializeTonight() {
+    private fun initializeTimetable() {
         uiScope.launch {
-            //todo get something from the database
+            timetableEntry.value = getLastAddedTimetable()
         }
     }
 
     fun onAddNewLesson() {
         uiScope.launch {
             val newTimetableEntry = Timetable()
-            //todo: set day from spinner
+            newTimetableEntry.day = "Monday"
             insert(newTimetableEntry)
-            _navigateToLesson.value = newTimetableEntry
+            _navigateToLesson.value = getLastAddedTimetable()
+        }
+    }
+
+    private suspend fun getLastAddedTimetable(): Timetable? {
+        return withContext(Dispatchers.IO) {
+            var timetable = database.getLastAddedLesson()
+            //todo must give back null in some cases
+            if (timetable?.day == "Someday") {
+                timetable = null
+            }
+            timetable
         }
     }
 
@@ -105,6 +116,7 @@ class TimetableViewModel (
     private suspend fun clear() {
         withContext(Dispatchers.IO) {
             database.clear()
+            lessonDao.clear()
         }
     }
 

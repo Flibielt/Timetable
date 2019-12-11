@@ -23,4 +23,7 @@ interface LessonDao {
 
     @Query("select * from lessons order by id DESC")
     fun getAllLessons(): LiveData<List<Lesson>>
+
+    @Query("select * from lessons order by id DESC limit 1")
+    fun getLastAddedLesson(): Lesson?
 }

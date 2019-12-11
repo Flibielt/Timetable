@@ -34,6 +34,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsName(0)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/informatics"
             app:layout_constraintTop_toBottomOf="@id/lesson_name_view"/>
@@ -47,6 +48,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsName(1)}"
             app:layout_constraintBottom_toBottomOf="@id/history"
             app:layout_constraintStart_toEndOf="@id/history"
             app:layout_constraintEnd_toEndOf="@id/physics"/>
@@ -60,6 +62,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsName(2)}"
             app:layout_constraintBottom_toBottomOf="@id/history"
             app:layout_constraintStart_toEndOf="@id/informatics"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -73,6 +76,7 @@
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
             android:text="@string/chemistry"
+            android:onClick="@{() -> lessonViewModel.setLessonsName(3)}"
             app:layout_constraintEnd_toStartOf="@id/literature"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/history" />
@@ -86,6 +90,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsName(4)}"
             app:layout_constraintBottom_toBottomOf="@id/chemistry"
             app:layout_constraintStart_toEndOf="@id/chemistry"
             app:layout_constraintEnd_toStartOf="@id/math"/>
@@ -99,6 +104,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsName(5)}"
             app:layout_constraintBottom_toBottomOf="@id/chemistry"
             app:layout_constraintStart_toEndOf="@id/literature"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -125,6 +131,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsDay(0)}"
             app:layout_constraintTop_toBottomOf="@+id/day_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tuesday"/>
@@ -138,6 +145,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsDay(1)}"
             app:layout_constraintBottom_toBottomOf="@+id/monday"
             app:layout_constraintStart_toEndOf="@id/monday"
             app:layout_constraintEnd_toStartOf="@id/wednesday"/>
@@ -151,6 +159,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsDay(2)}"
             app:layout_constraintBottom_toBottomOf="@+id/monday"
             app:layout_constraintStart_toEndOf="@id/tuesday"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -164,6 +173,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsDay(3)}"
             app:layout_constraintTop_toBottomOf="@id/monday"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/friday"/>
@@ -177,6 +187,7 @@
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{() -> lessonViewModel.setLessonsDay(4)}"
             app:layout_constraintBottom_toBottomOf="@id/thursday"
             app:layout_constraintStart_toEndOf="@id/thursday"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -190,6 +201,7 @@
             android:layout_marginEnd="@dimen/margin"
             android:layout_marginBottom="@dimen/triple_margin"
             android:text="@string/add_lesson"
+            android:onClick="@{() -> lessonViewModel.onUpdateLesson()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
