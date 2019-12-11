@@ -73,9 +73,12 @@ class LessonViewModel (
                 //print("Lesson database size after insert: ")
                 //println(lessons.value?.size)
 
+                print("Timetable size: ")
+                println(timetableDatabase.getAllLessons().value?.size)
+
                 print("Lesson database size: ")
                 println(getAllLesson()?.size)
-                val id = getLastAddedLesson()?.id
+                lesson.id = getLastAddedLesson()!!.id
 
                 val lessonInDatabase = getLastAddedLesson()
                 print("Last lesson ID: ")
@@ -91,9 +94,16 @@ class LessonViewModel (
                     println(it.name)
                 }
 
+                lessonDatabase.getEveryLesson().forEach {
+                    print("Lesson ID: ")
+                    println(it.id)
+                    print("Lesson name: ")
+                    println(it.name)
+                }
+
                 //val timetableEntry = timetableDatabase.get(timetableEntryKey)
                 val timetableEntry = getTimetable(timetableEntryKey)
-                timetableEntry!!.lessonId = id!!
+                timetableEntry!!.lessonId = lesson.id
                 //timetableDatabase.update(timetableEntry)
                 updateTimetable(timetableEntry)
             }

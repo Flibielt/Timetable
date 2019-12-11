@@ -26,27 +26,26 @@ fun formatLessons(timetable: List<Timetable>, lessons: List<Lesson>?, resources:
         print("Lesson name: ")
         println(it.name)
     }
-    //if (!lessons.isNullOrEmpty()) {
+    if (!lessons.isNullOrEmpty()) {
         sb.apply {
             timetable.forEach {
                 sb.append("Lesson: ")
-                /*for (i in 0 until lessons.size) {
+                for (i in 0 until lessons.size) {
                     if (lessons[i].id == it.lessonId) {
                         sb.append(lessons[i].name)
                     }
-                }*/
-                sb.append("History")
+                }
                 sb.append("<br/>")
                 sb.append("Day: ")
                 sb.append(it.day)
                 sb.append("<br/>")
-                sb.append("Position: ")
             }
         }
-    /*} else {
+    } else {
         sb.append("Empty database")
-    }*/
+    }
 
     return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
 
 }
+

@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.example.timetable.database.Lesson
 import com.example.timetable.database.LessonDao
 import com.example.timetable.database.Timetable
 import com.example.timetable.database.TimetableDao
@@ -20,11 +21,11 @@ class TimetableViewModel (
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var timetableEntry = MutableLiveData<Timetable?>()
     private val timetableEntries = database.getAllLessons()
-    private val lessons = lessonDao.getAllLessons()
+    private lateinit var lessons: List<Lesson>
     private val _navigateToLesson = MutableLiveData<Timetable>()
 
     val timetableString = Transformations.map(timetableEntries) {timetable ->
-        formatLessons(timetable, lessons.value, application.resources)
+        formatLessons(timetable, getLessons(), application.resources)
     }
 
     val navigateToLesson: LiveData<Timetable>
@@ -36,6 +37,21 @@ class TimetableViewModel (
 
     fun doneNavigating() {
         _navigateToLesson.value = null
+    }
+
+    fun getLessons(): List<Lesson>? {
+        if (!this::lessons.isInitialized) {
+            return null
+        }
+        return lessons
+    }
+
+    private suspend fun getLessonsList(): List<Lesson> {
+        return withContext(Dispatchers.IO) {
+            lessons = lessonDao.getEveryLesson()
+            lessons
+        }
+
     }
 
     /**
@@ -84,7 +100,7 @@ class TimetableViewModel (
     private suspend fun getLastAddedTimetable(): Timetable? {
         return withContext(Dispatchers.IO) {
             var timetable = database.getLastAddedLesson()
-            //todo must give back null in some cases
+            lessons = getLessonsList()
             if (timetable?.day == "Someday") {
                 timetable = null
             }
@@ -115,8 +131,8 @@ class TimetableViewModel (
 
     private suspend fun clear() {
         withContext(Dispatchers.IO) {
-            database.clear()
             lessonDao.clear()
+            database.clear()
         }
     }
 

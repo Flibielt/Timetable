@@ -11,5 +11,5 @@ data class Lesson(
     var id: Long = 0L,
 
     @ColumnInfo(name = "name")
-    var name: String = ""
+    var name: String = "Math"
 )
