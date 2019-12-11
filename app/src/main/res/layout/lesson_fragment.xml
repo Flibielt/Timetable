@@ -9,71 +9,190 @@
             type="com.example.timetable.lesson.LessonViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".lesson.LessonViewModel">
 
         <TextView
+            android:id="@+id/lesson_name_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lesson_name"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintTop_toTopOf="parent"
             style="@style/CreateLessonTextView"/>
-
-        <EditText
-            android:id="@+id/lesson_name_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginEnd="@dimen/margin"/>
-
-        <Spinner
-            android:id="@+id/day_spinner_add_lesson"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginEnd="@dimen/margin"
-            android:entries="@array/days"
-            android:scrollbarSize="4dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_lesson_button" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lesson_position"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginEnd="@dimen/margin"
-            style="@style/CreateLessonTextView"/>
-
-        <EditText
-            android:id="@+id/lesson_position_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginEnd="@dimen/margin"/>
 
         <Button
-            android:id="@+id/create_lesson"
+            android:id="@+id/history"
+            style="@style/LessonButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/history"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/informatics"
+            app:layout_constraintTop_toBottomOf="@id/lesson_name_view"/>
+
+        <Button
+            android:id="@+id/informatics"
+            style="@style/LessonButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/informatics"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintBottom_toBottomOf="@id/history"
+            app:layout_constraintStart_toEndOf="@id/history"
+            app:layout_constraintEnd_toEndOf="@id/physics"/>
+
+        <Button
+            android:id="@+id/physics"
+            style="@style/LessonButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/physics"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintBottom_toBottomOf="@id/history"
+            app:layout_constraintStart_toEndOf="@id/informatics"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/chemistry"
+            style="@style/LessonButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@string/chemistry"
+            app:layout_constraintEnd_toStartOf="@id/literature"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/history" />
+
+        <Button
+            android:id="@+id/literature"
+            style="@style/LessonButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/literature"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintBottom_toBottomOf="@id/chemistry"
+            app:layout_constraintStart_toEndOf="@id/chemistry"
+            app:layout_constraintEnd_toStartOf="@id/math"/>
+
+        <Button
+            android:id="@+id/math"
+            style="@style/LessonButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/math"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintBottom_toBottomOf="@id/chemistry"
+            app:layout_constraintStart_toEndOf="@id/literature"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/day_view"
+            style="@style/CreateLessonTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/triple_margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@string/day"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chemistry" />
+
+        <Button
+            android:id="@+id/monday"
+            style="@style/LessonButtons"
+            android:text="@string/monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintTop_toBottomOf="@+id/day_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tuesday"/>
+
+        <Button
+            android:id="@+id/tuesday"
+            style="@style/LessonButtons"
+            android:text="@string/tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintBottom_toBottomOf="@+id/monday"
+            app:layout_constraintStart_toEndOf="@id/monday"
+            app:layout_constraintEnd_toStartOf="@id/wednesday"/>
+
+        <Button
+            android:id="@+id/wednesday"
+            style="@style/LessonButtons"
+            android:text="@string/wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintBottom_toBottomOf="@+id/monday"
+            app:layout_constraintStart_toEndOf="@id/tuesday"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/thursday"
+            style="@style/LessonButtons"
+            android:text="@string/thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintTop_toBottomOf="@id/monday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/friday"/>
+
+        <Button
+            android:id="@+id/friday"
+            style="@style/LessonButtons"
+            android:text="@string/friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:layout_constraintBottom_toBottomOf="@id/thursday"
+            app:layout_constraintStart_toEndOf="@id/thursday"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/ok"
             style="@style/LessonButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
-            android:layout_marginBottom="@dimen/margin"
-            android:text="@string/create_lesson"
-            android:onClick="@{()-> lessonViewModel.onUpdateLesson()}"
+            android:layout_marginBottom="@dimen/triple_margin"
+            android:text="@string/add_lesson"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

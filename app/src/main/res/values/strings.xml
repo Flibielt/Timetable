@@ -11,6 +11,13 @@
 
     <string name="cleared_message">All data is cleared</string>
 
+    <string name="math">Math</string>
+    <string name="history">History</string>
+    <string name="literature">Literature</string>
+    <string name="informatics">Informatics</string>
+    <string name="physics">Physics</string>
+    <string name="chemistry">Chemistry</string>
+
     <string-array name="days">
         <item>Monday</item>
         <item>Tuesday</item>
@@ -18,4 +25,10 @@
         <item>Thursday</item>
         <item>Friday</item>
     </string-array>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="day">Day</string>
 </resources>
