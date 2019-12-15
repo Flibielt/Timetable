@@ -48,7 +48,7 @@ class TimetableViewModel (
 
     private suspend fun getLessonsList(): List<Lesson> {
         return withContext(Dispatchers.IO) {
-            lessons = lessonDao.getEveryLesson()
+            val lessons = lessonDao.getEveryLesson()
             lessons
         }
 

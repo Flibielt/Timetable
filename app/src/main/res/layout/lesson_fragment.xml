@@ -16,13 +16,27 @@
 
         <TextView
             android:id="@+id/lesson_name_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lesson_name"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/CreateLessonTextView"/>
+
+        <TextView
+            android:id="@+id/chosen_lesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@{lessonViewModel.lessonName}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lesson_name_view"
+            app:layout_constraintBottom_toBottomOf="@+id/lesson_name_view"
             style="@style/CreateLessonTextView"/>
 
         <Button
@@ -37,7 +51,7 @@
             android:onClick="@{() -> lessonViewModel.setLessonsName(0)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/informatics"
-            app:layout_constraintTop_toBottomOf="@id/lesson_name_view"/>
+            app:layout_constraintTop_toBottomOf="@id/chosen_lesson"/>
 
         <Button
             android:id="@+id/informatics"
@@ -112,15 +126,26 @@
         <TextView
             android:id="@+id/day_view"
             style="@style/CreateLessonTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/triple_margin"
             android:layout_marginEnd="@dimen/margin"
             android:text="@string/day"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chemistry" />
+
+        <TextView
+            android:id="@+id/chosen_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@{String.valueOf(lessonViewModel.lessonDay)}"
+            app:layout_constraintBottom_toBottomOf="@id/day_view"
+            app:layout_constraintStart_toEndOf="@id/day_view"
+            style="@style/CreateLessonTextView"/>
 
         <Button
             android:id="@+id/monday"
@@ -132,7 +157,7 @@
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
             android:onClick="@{() -> lessonViewModel.setLessonsDay(0)}"
-            app:layout_constraintTop_toBottomOf="@+id/day_view"
+            app:layout_constraintTop_toBottomOf="@+id/chosen_day"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tuesday"/>
 

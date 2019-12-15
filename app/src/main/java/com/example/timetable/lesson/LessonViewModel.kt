@@ -20,15 +20,23 @@ class LessonViewModel (
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    var lessonName: String = "Math"
-    var lessonDay: String = "Monday"
+    private val _lesson = MutableLiveData<String>()
+    val lessonName: LiveData<String>
+        get() = _lesson
 
-    private var lesson = MutableLiveData<Lesson?>()
-    private val lessons = lessonDatabase.getAllLessons()
+    private val _day = MutableLiveData<String>()
+    val lessonDay: LiveData<String>
+        get() = _day
+    //todo: Lesson name and day changes does not appear on the UI
 
     private val _navigateToTimetable = MutableLiveData<Boolean?>()
     val navigateToTimetable: LiveData<Boolean?>
         get() = _navigateToTimetable
+
+    init {
+        _lesson.value = "Math"
+        _day.value = "Friday"
+    }
 
     fun doneNavigating() {
         _navigateToTimetable.value = null
@@ -36,32 +44,36 @@ class LessonViewModel (
 
     fun setLessonsName(id: Int) {
         if (id == 0) {
-            lessonName = "History"
+            _lesson.value = "History"
         } else if (id == 1) {
-            lessonName = "Informatics"
+            _lesson.value = "Informatics"
         } else if (id == 2) {
-            lessonName = "Physics"
+            _lesson.value = "Physics"
         } else if (id == 3) {
-            lessonName = "Chemistry"
+            _lesson.value = "Chemistry"
         } else if (id == 4) {
-            lessonName = "Literature"
+            _lesson.value = "Literature"
         } else {
-            lessonName = "Math"
+            _lesson.value = "Math"
         }
+        print("Chosen lesson: ")
+        println(_lesson.value)
     }
 
     fun setLessonsDay(id: Int) {
         if (id == 0) {
-            lessonDay = "Monday"
+            _day.value = "Monday"
         } else if (id == 1) {
-            lessonDay = "Tuesday"
+            _day.value = "Tuesday"
         } else if (id == 2) {
-            lessonDay = "Wednesday"
+            _day.value = "Wednesday"
         } else if (id == 3) {
-            lessonDay = "Thursday"
+            _day.value = "Thursday"
         } else {
-            lessonDay = "Friday"
+            _day.value = "Friday"
         }
+        print("Chosen day: ")
+        println(_day.value)
     }
 
     private fun onSetLessonName(name: String) {
@@ -78,8 +90,6 @@ class LessonViewModel (
                 updateTimetable(timetableEntry)
             }
         }
-
-
     }
 
     private fun onSetLessonDay(day: String) {
@@ -94,8 +104,8 @@ class LessonViewModel (
     }
 
     fun onUpdateLesson() {
-        onSetLessonName(lessonName)
-        onSetLessonDay(lessonDay)
+        onSetLessonName(_lesson.value!!)
+        onSetLessonDay(_day.value!!)
         _navigateToTimetable.value = true
     }
 
