@@ -32,4 +32,5 @@
     <string name="friday">Friday</string>
     <string name="day">Day</string>
     <string name="close">Close</string>
+    <string name="header_text">The lessons</string>
 </resources>
