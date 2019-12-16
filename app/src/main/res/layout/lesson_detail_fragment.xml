@@ -23,6 +23,7 @@
             android:layout_marginTop="@dimen/triple_margin"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            app:lessonDay="@{detailViewModel.timetable}"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/CreateLessonTextView"/>
 
@@ -33,6 +34,7 @@
             android:layout_marginTop="@dimen/triple_margin"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            app:lessonName="@{detailViewModel.timetable}"
             app:layout_constraintTop_toBottomOf="@+id/detail_lesson_day"
             style="@style/CreateLessonTextView"/>
 
@@ -43,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/triple_margin"
             android:text="@string/close"
+            android:onClick="@{() -> detailViewModel.onClose()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -20,22 +20,13 @@ class DetailViewModel (
 ) : AndroidViewModel(application) {
 
     private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val timetableEntry: LiveData<Timetable>
-    private val lesson: LiveData<Lesson>
 
     fun getTimetable() = timetableEntry
-    fun getLesson() = lesson
-
-    val lessonDay: String
-    val lessonName: String
 
     init {
         timetableEntry = timetableDatabase.getLiveData(timetableEntryKey)
-        lesson = lessonDatabase.getLiveData(timetableEntry.value!!.lessonId)
-        lessonDay = timetableEntry.value!!.day
-        lessonName = lesson.value!!.name
     }
 
     override fun onCleared() {

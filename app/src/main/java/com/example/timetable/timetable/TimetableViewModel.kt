@@ -23,6 +23,7 @@ class TimetableViewModel (
     val timetableEntries = database.getAllLessons()
     private lateinit var lessons: List<Lesson>
     private val _navigateToLesson = MutableLiveData<Timetable>()
+    private val _navigateToDetail = MutableLiveData<Long>()
 
     val timetableString = Transformations.map(timetableEntries) {timetable ->
         formatLessons(timetable, getLessons(), application.resources)
@@ -30,6 +31,9 @@ class TimetableViewModel (
 
     val navigateToLesson: LiveData<Timetable>
         get() = _navigateToLesson
+
+    val navigateToDetail: LiveData<Long>
+        get() = _navigateToDetail
 
     fun getLessonName(lessonId: Long): String? {
         return lessonDao.get(lessonId)?.name
@@ -139,5 +143,13 @@ class TimetableViewModel (
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun onTimetableClicked(id: Long) {
+        _navigateToDetail.value = id
+    }
+
+    fun onLessonDetailNavigated() {
+        _navigateToDetail.value = null
     }
 }

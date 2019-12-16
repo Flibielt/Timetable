@@ -34,7 +34,9 @@ class TimetableFragment : Fragment() {
         val timetableViewModel = ViewModelProviders.of(this, viewModelFactory).get(TimetableViewModel::class.java)
 
         val adapter = TimetableLessonAdapter(TimetableLessonListener { timetableId ->
-            Toast.makeText(context, "${timetableId}", Toast.LENGTH_LONG).show() })
+            //Toast.makeText(context, "${timetableId}", Toast.LENGTH_LONG).show()
+            timetableViewModel.onTimetableClicked(timetableId)
+        })
 
         binding.timetableViewModel = timetableViewModel
         binding.setLifecycleOwner(this)
@@ -52,6 +54,14 @@ class TimetableFragment : Fragment() {
                     TimetableFragmentDirections
                         .actionTimeTableFragmentToLessonFragment(timetable.id))
                 timetableViewModel.doneNavigating()
+            }
+        })
+
+        timetableViewModel.navigateToDetail.observe(this, Observer { timetable ->
+            timetable?.let {
+                this.findNavController().navigate(
+                    TimetableFragmentDirections.actionTimeTableFragmentToLessonDetail(timetable))
+                timetableViewModel.onLessonDetailNavigated()
             }
         })
 
