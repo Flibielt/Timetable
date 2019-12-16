@@ -7,11 +7,15 @@
         <variable
             name="timetable"
             type="com.example.timetable.database.Timetable" />
+        <variable
+            name="clickListener"
+            type="com.example.timetable.timetable.TimetableLessonListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onclick(timetable)}">
 
         <TextView
             android:id="@+id/lesson_day"

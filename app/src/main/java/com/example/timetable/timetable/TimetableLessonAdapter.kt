@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.timetable.database.Timetable
 import com.example.timetable.databinding.ListItemTimetableLessonBinding
 
-class TimetableLessonAdapter : ListAdapter<Timetable, TimetableLessonAdapter.ViewHolder>(TimetableLessonDiffCallback()) {
+class TimetableLessonAdapter(val clickListener: TimetableLessonListener) : ListAdapter<Timetable, TimetableLessonAdapter.ViewHolder>(TimetableLessonDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,8 +21,12 @@ class TimetableLessonAdapter : ListAdapter<Timetable, TimetableLessonAdapter.Vie
 
     class ViewHolder private constructor(val binding: ListItemTimetableLessonBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Timetable) {
+        fun bind(
+            item: Timetable,
+            clickListener: TimetableLessonListener
+        ) {
             binding.timetable = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -45,4 +49,8 @@ class TimetableLessonDiffCallback  : DiffUtil.ItemCallback<Timetable>() {
         return oldItem == newItem
     }
 
+}
+
+class TimetableLessonListener(val clickListener: (timetableId: Long) -> Unit) {
+    fun onclick(timetable: Timetable) = clickListener(timetable.id)
 }

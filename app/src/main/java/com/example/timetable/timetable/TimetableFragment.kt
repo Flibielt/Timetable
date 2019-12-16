@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -32,7 +33,8 @@ class TimetableFragment : Fragment() {
         val viewModelFactory = TimetableViewModelFactory(timetableDatasource, lessonDatasource, application)
         val timetableViewModel = ViewModelProviders.of(this, viewModelFactory).get(TimetableViewModel::class.java)
 
-        val adapter = TimetableLessonAdapter()
+        val adapter = TimetableLessonAdapter(TimetableLessonListener { timetableId ->
+            Toast.makeText(context, "${timetableId}", Toast.LENGTH_LONG).show() })
 
         binding.timetableViewModel = timetableViewModel
         binding.setLifecycleOwner(this)
