@@ -10,12 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.timetable.R
 import com.example.timetable.database.Timetable
 import com.example.timetable.databinding.ListItemTimetableLessonBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.sql.Time
 
 private val ITEM_VIEW_TYPE_HEADER = 0
 private val ITEM_VIEW_TYPE_ITEM = 1
 
 class TimetableLessonAdapter(val clickListener: TimetableLessonListener) : ListAdapter<DataItem, RecyclerView.ViewHolder>(TimetableLessonDiffCallback()) {
+
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
@@ -35,11 +41,15 @@ class TimetableLessonAdapter(val clickListener: TimetableLessonListener) : ListA
     }
 
     fun addHeaderAndSubmitList(list: List<Timetable>?) {
-        val items = when (list) {
-            null -> listOf(DataItem.Header)
-            else -> listOf(DataItem.Header) + list.map { DataItem.TimetableItem(it) }
+        adapterScope.launch {
+            val items = when (list) {
+                null -> listOf(DataItem.Header)
+                else -> listOf(DataItem.Header) + list.map { DataItem.TimetableItem(it) }
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
         }
-        submitList(items)
     }
 
     override fun getItemViewType(position: Int): Int {
