@@ -4,23 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timetable.R
 import com.example.timetable.TextItemViewHolder
 import com.example.timetable.database.Timetable
 
-class TimetableLessonAdapter : RecyclerView.Adapter<TimetableLessonAdapter.ViewHolder>() {
-
-    var data = listOf<Timetable>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount() = data.size
+class TimetableLessonAdapter : ListAdapter<Timetable, TimetableLessonAdapter.ViewHolder>(TimetableLessonDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
@@ -47,4 +41,15 @@ class TimetableLessonAdapter : RecyclerView.Adapter<TimetableLessonAdapter.ViewH
             }
         }
     }
+}
+
+class TimetableLessonDiffCallback  : DiffUtil.ItemCallback<Timetable>() {
+    override fun areItemsTheSame(oldItem: Timetable, newItem: Timetable): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Timetable, newItem: Timetable): Boolean {
+        return oldItem == newItem
+    }
+
 }

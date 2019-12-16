@@ -40,7 +40,7 @@ class TimetableFragment : Fragment() {
 
         timetableViewModel.timetableEntries.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
