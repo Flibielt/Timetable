@@ -11,9 +11,17 @@ fun TextView.setLessonDay(item: Timetable) {
 
 @BindingAdapter("lessonName")
 fun TextView.setLessonName(item: Timetable) {
-    if (item.lessonId > 0) {
+    if (item.lessonId == 5L) {
+        text = "Math"
+    } else if (item.lessonId == 4L) {
         text = "Literature"
+    } else if (item.lessonId == 3L) {
+        text = "Chemistry"
+    } else if (item.lessonId == 2L) {
+        text = "Physics"
+    } else if (item.lessonId == 1L) {
+        text = "Informatics"
+    } else {
+        text = "History"
     }
-    text = "Math"
-    //todo: get lesson name from LessonDAO
 }

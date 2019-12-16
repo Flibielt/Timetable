@@ -18,6 +18,9 @@ interface TimetableDao {
     @Query("select * from timetable where id = :key")
     fun get(key: Long): Timetable?
 
+    @Query("select * from timetable where id = :key")
+    fun getLiveData(key: Long): LiveData<Timetable>
+
     @Query("delete from timetable")
     fun clear()
 

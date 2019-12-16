@@ -18,6 +18,9 @@ interface LessonDao {
     @Query("select * from lessons where id = :key")
     fun get(key: Long): Lesson?
 
+    @Query("select * from lessons where id = :key")
+    fun getLiveData(key: Long): LiveData<Lesson>
+
     @Query("delete from lessons")
     fun clear()
 

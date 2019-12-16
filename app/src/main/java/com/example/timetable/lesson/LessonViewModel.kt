@@ -81,9 +81,23 @@ class LessonViewModel (
             withContext(Dispatchers.IO) {
                 val lesson = Lesson()
                 lesson.name = name
-                insert(lesson)
+                //insert(lesson)
+                val id: Long
+                if (name == "History") {
+                    id = 0L
+                } else if (name == "Informatics") {
+                    id = 1L
+                } else if (name == "Physics") {
+                    id = 2L
+                } else if (name == "Chemistry") {
+                    id = 3L
+                } else if (name == "Literature") {
+                    id = 4L
+                } else {
+                    id = 5L
+                }
 
-                lesson.id = getLastAddedLesson()!!.id
+                lesson.id = id
 
                 val timetableEntry = getTimetable(timetableEntryKey)
                 timetableEntry!!.lessonId = lesson.id
