@@ -20,7 +20,7 @@ class TimetableViewModel (
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var timetableEntry = MutableLiveData<Timetable?>()
-    private val timetableEntries = database.getAllLessons()
+    val timetableEntries = database.getAllLessons()
     private lateinit var lessons: List<Lesson>
     private val _navigateToLesson = MutableLiveData<Timetable>()
 

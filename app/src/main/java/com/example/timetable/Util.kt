@@ -2,7 +2,9 @@ package com.example.timetable
 
 import android.content.res.Resources
 import android.text.Spanned
+import android.widget.TextView
 import androidx.core.text.HtmlCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.timetable.database.Lesson
 import com.example.timetable.database.Timetable
 
@@ -31,3 +33,4 @@ fun formatLessons(timetable: List<Timetable>, lessons: List<Lesson>?, resources:
 
 }
 
+class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)

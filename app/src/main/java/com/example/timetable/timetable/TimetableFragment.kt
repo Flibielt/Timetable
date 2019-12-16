@@ -32,8 +32,17 @@ class TimetableFragment : Fragment() {
         val viewModelFactory = TimetableViewModelFactory(timetableDatasource, lessonDatasource, application)
         val timetableViewModel = ViewModelProviders.of(this, viewModelFactory).get(TimetableViewModel::class.java)
 
+        val adapter = TimetableLessonAdapter()
+
         binding.timetableViewModel = timetableViewModel
         binding.setLifecycleOwner(this)
+        binding.lessonList.adapter = adapter
+
+        timetableViewModel.timetableEntries.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
 
         timetableViewModel.navigateToLesson.observe(this, Observer { timetable ->
             timetable?.let {
