@@ -24,6 +24,7 @@ class TimetableViewModel (
     private lateinit var lessons: List<Lesson>
     private val _navigateToLesson = MutableLiveData<Timetable>()
     private val _navigateToDetail = MutableLiveData<Long>()
+    private val _navigateToOverview = MutableLiveData<Boolean?>()
 
     val timetableString = Transformations.map(timetableEntries) {timetable ->
         formatLessons(timetable, getLessons(), application.resources)
@@ -34,6 +35,9 @@ class TimetableViewModel (
 
     val navigateToDetail: LiveData<Long>
         get() = _navigateToDetail
+
+    val navigateToOverview: LiveData<Boolean?>
+        get() = _navigateToOverview
 
     fun getLessonName(lessonId: Long): String? {
         return lessonDao.get(lessonId)?.name
@@ -101,6 +105,12 @@ class TimetableViewModel (
         }
     }
 
+    fun onGetInternetData() {
+        uiScope.launch {
+            _navigateToOverview.value = true
+        }
+    }
+
     private suspend fun getLastAddedTimetable(): Timetable? {
         return withContext(Dispatchers.IO) {
             var timetable = database.getLastAddedLesson()
@@ -151,5 +161,9 @@ class TimetableViewModel (
 
     fun onLessonDetailNavigated() {
         _navigateToDetail.value = null
+    }
+
+    fun onOverviewNavigated() {
+        _navigateToOverview.value = null
     }
 }

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_time_table_fragment_to_lesson_detail"
             app:destination="@id/lesson_detail" />
+        <action
+            android:id="@+id/action_time_table_fragment_to_internet_data_overview_overview"
+            app:destination="@id/internet_data_overview_overview" />
     </fragment>
 
     <fragment
@@ -47,6 +50,17 @@
             app:argType="Long"/>
         <action
             android:id="@+id/action_lesson_detail_to_time_table_fragment"
+            app:destination="@id/time_table_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/internet_data_overview_overview"
+        android:name="com.example.timetable.overview.OverviewFragment"
+        android:label="fragment_overview"
+        tools:layout="@layout/fragment_overview">
+
+        <action
+            android:id="@+id/action_internet_data_overview_overview_to_time_table_fragment"
             app:destination="@id/time_table_fragment" />
     </fragment>
 </navigation>

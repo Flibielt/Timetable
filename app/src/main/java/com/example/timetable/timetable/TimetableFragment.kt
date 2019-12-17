@@ -65,6 +65,15 @@ class TimetableFragment : Fragment() {
             }
         })
 
+        timetableViewModel.navigateToOverview.observe(this, Observer {timetable ->
+            timetable?.let {
+                this.findNavController().navigate(
+                    TimetableFragmentDirections.actionTimeTableFragmentToInternetDataOverviewOverview())
+                timetableViewModel.onOverviewNavigated()
+            }
+
+        })
+
         timetableViewModel.showSnackBarEvent.observe(this, Observer {
             if (it == true) {
                 Snackbar.make(
