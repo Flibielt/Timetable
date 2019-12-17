@@ -4,14 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.timetable.network.MarsApi
-import com.example.timetable.network.MarsProperty
+import com.example.timetable.network.PlaceholderProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 
@@ -36,8 +33,8 @@ class OverviewViewModel : ViewModel() {
     val status: LiveData<MarsApiStatus>
         get() = _status
 
-    private val _properties = MutableLiveData<List<MarsProperty>>()
-    val properties: LiveData<List<MarsProperty>>
+    private val _properties = MutableLiveData<List<PlaceholderProperty>>()
+    val properties: LiveData<List<PlaceholderProperty>>
         get() = _properties
 
     /**

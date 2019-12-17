@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timetable.databinding.GridViewItemBinding
-import com.example.timetable.network.MarsProperty
+import com.example.timetable.network.PlaceholderProperty
 
-class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter : ListAdapter<PlaceholderProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.MarsPropertyViewHolder {
         return MarsPropertyViewHolder(GridViewItemBinding.inflate(
@@ -20,19 +20,19 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
         holder.bind(marsProperty)
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<MarsProperty>() {
-        override fun areItemsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<PlaceholderProperty>() {
+        override fun areItemsTheSame(oldItem: PlaceholderProperty, newItem: PlaceholderProperty): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+        override fun areContentsTheSame(oldItem: PlaceholderProperty, newItem: PlaceholderProperty): Boolean {
             return oldItem.id == newItem.id
         }
     }
 
     class MarsPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(marsProperty: MarsProperty) {
-            binding.property = marsProperty
+        fun bind(placeholderProperty: PlaceholderProperty) {
+            binding.property = placeholderProperty
             binding.executePendingBindings()
         }
     }

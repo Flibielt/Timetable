@@ -7,7 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.timetable.network.MarsProperty
+import com.example.timetable.network.PlaceholderProperty
 import com.example.timetable.overview.MarsApiStatus
 import com.example.timetable.overview.PhotoGridAdapter
 
@@ -27,7 +27,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<PlaceholderProperty>?) {
     val adapter = recyclerView.adapter as PhotoGridAdapter
     adapter.submitList(data)
 }
