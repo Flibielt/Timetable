@@ -33,4 +33,7 @@
     <string name="day">Day</string>
     <string name="close">Close</string>
     <string name="header_text">The lessons</string>
+    <string name="show_all">Show all</string>
+    <string name="show_rent">Rent</string>
+    <string name="show_buy">Buy</string>
 </resources>
