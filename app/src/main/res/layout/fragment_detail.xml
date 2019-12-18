@@ -31,39 +31,75 @@
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/title_text"
+                android:id="@+id/title_text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="@string/title"
                 android:textColor="#de000000"
                 android:textSize="20sp"
-                android:text="@{viewModel.selectedProperty.title}"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
                 tools:text="Title" />
 
             <TextView
-                android:id="@+id/picture_id_text"
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                android:text="@{viewModel.selectedProperty.title}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_text_title"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/picture_id_text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="@string/id"
                 android:textColor="#de000000"
                 android:textSize="20sp"
-                android:text="@{Integer.toString(viewModel.selectedProperty.id)}"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_text"
                 tools:text="ID" />
 
             <TextView
-                android:id="@+id/album_id_text"
+                android:id="@+id/picture_id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                android:text="@{Integer.toString(viewModel.selectedProperty.id)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/picture_id_text_title"
+                tools:text="ID" />
+
+            <TextView
+                android:id="@+id/album_id_text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="@string/album_id"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/picture_id_text"
+                tools:text="Album ID" />
+
+            <TextView
+                android:id="@+id/album_id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textColor="#de000000"
                 android:textSize="20sp"
                 android:text="@{Integer.toString(viewModel.selectedProperty.albumId)}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/picture_id_text"
+                app:layout_constraintTop_toBottomOf="@+id/album_id_text_title"
                 tools:text="Album ID" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
