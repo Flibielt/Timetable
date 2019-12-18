@@ -62,5 +62,22 @@
         <action
             android:id="@+id/action_internet_data_overview_overview_to_time_table_fragment"
             app:destination="@id/time_table_fragment" />
+        <action
+            android:id="@+id/action_internet_data_overview_overview_to_internet_data_detail"
+            app:destination="@id/internet_data_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/internet_data_detail"
+        android:name="com.example.timetable.pictureDetail.PictureDetailFragment"
+        android:label="internet_data_detail"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="selectedProperty"
+            app:argType="com.example.timetable.network.PlaceholderProperty"/>
+        <action
+            android:id="@+id/action_internet_data_detail_to_internet_data_overview_overview"
+            app:destination="@id/internet_data_overview_overview" />
     </fragment>
 </navigation>

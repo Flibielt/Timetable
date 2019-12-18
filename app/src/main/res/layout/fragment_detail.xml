@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.timetable.pictureDetail.PictureDetailViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,29 +27,44 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl="@{viewModel.selectedProperty.url}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/property_type_text"
+                android:id="@+id/title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textColor="#de000000"
-                android:textSize="39sp"
+                android:textSize="20sp"
+                android:text="@{viewModel.selectedProperty.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
-                tools:text="To Rent" />
+                tools:text="Title" />
 
             <TextView
-                android:id="@+id/price_value_text"
+                android:id="@+id/picture_id_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textColor="#de000000"
                 android:textSize="20sp"
+                android:text="@{Integer.toString(viewModel.selectedProperty.id)}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/property_type_text"
-                tools:text="$100,000" />
+                app:layout_constraintTop_toBottomOf="@+id/title_text"
+                tools:text="ID" />
+
+            <TextView
+                android:id="@+id/album_id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                android:text="@{Integer.toString(viewModel.selectedProperty.albumId)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/picture_id_text"
+                tools:text="Album ID" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

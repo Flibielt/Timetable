@@ -8,16 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.timetable.databinding.GridViewItemBinding
 import com.example.timetable.network.PlaceholderProperty
 
-class PhotoGridAdapter : ListAdapter<PlaceholderProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter (private val onClickListener: OnClickListener) : ListAdapter<PlaceholderProperty, PhotoGridAdapter.PlaceholderPropertyViewHolder>(DiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.MarsPropertyViewHolder {
-        return MarsPropertyViewHolder(GridViewItemBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.PlaceholderPropertyViewHolder {
+        return PlaceholderPropertyViewHolder(GridViewItemBinding.inflate(
             LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: PhotoGridAdapter.MarsPropertyViewHolder, position: Int) {
-        val marsProperty = getItem(position)
-        holder.bind(marsProperty)
+    override fun onBindViewHolder(holder: PhotoGridAdapter.PlaceholderPropertyViewHolder, position: Int) {
+        val placeholderProperty = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(placeholderProperty)
+        }
+        holder.bind(placeholderProperty)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<PlaceholderProperty>() {
@@ -30,10 +33,14 @@ class PhotoGridAdapter : ListAdapter<PlaceholderProperty, PhotoGridAdapter.MarsP
         }
     }
 
-    class MarsPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class PlaceholderPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(placeholderProperty: PlaceholderProperty) {
             binding.property = placeholderProperty
             binding.executePendingBindings()
         }
+    }
+
+    class OnClickListener(val clickListener: (placeholderProperty: PlaceholderProperty) -> Unit) {
+        fun onClick(placeholderProperty: PlaceholderProperty) = clickListener(placeholderProperty)
     }
 }

@@ -8,6 +8,27 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="internet_data_detail">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-208" />
+                            <option name="y" value="372" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_internet_data_detail_to_internet_data_overview_overview">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="internet_data_overview_overview">
                     <value>
                       <LayoutPositions>
@@ -19,6 +40,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_internet_data_overview_overview_to_internet_data_detail">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_internet_data_overview_overview_to_time_table_fragment">
                               <value>
                                 <LayoutPositions />

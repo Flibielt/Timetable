@@ -37,6 +37,10 @@ class OverviewViewModel : ViewModel() {
     val properties: LiveData<List<PlaceholderProperty>>
         get() = _properties
 
+    private val _navigateToSelectedProperty = MutableLiveData<PlaceholderProperty>()
+    val navigateToSelectedProperty: LiveData<PlaceholderProperty>
+        get() = _navigateToSelectedProperty
+
     /**
      * Call getInternetDataProperties() on init so we can display status immediately.
      */
@@ -67,5 +71,12 @@ class OverviewViewModel : ViewModel() {
         viewModelJob.cancel()
     }
 
+    fun displayPropertyDetails(placeholderProperty: PlaceholderProperty) {
+        _navigateToSelectedProperty.value = placeholderProperty
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
 
 }
