@@ -17,25 +17,47 @@
         tools:context=".detail.DetailViewModel">
 
         <TextView
-            android:id="@+id/detail_lesson_day"
+            android:id="@+id/detail_lesson_day_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/triple_margin"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
-            app:lessonDay="@{detailViewModel.timetable}"
+            android:text="@string/day"
             app:layout_constraintTop_toTopOf="parent"
+            style="@style/CreateLessonTextViewTitle"/>
+
+        <TextView
+            android:id="@+id/detail_lesson_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            app:lessonDay="@{detailViewModel.timetable}"
+            app:layout_constraintTop_toBottomOf="@+id/detail_lesson_day_title"
             style="@style/CreateLessonTextView"/>
+
+        <TextView
+            android:id="@+id/detail_lesson_name_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/triple_margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@string/lesson_name"
+            app:layout_constraintTop_toBottomOf="@+id/detail_lesson_day"
+            style="@style/CreateLessonTextViewTitle"/>
 
         <TextView
             android:id="@+id/detail_lesson_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/triple_margin"
+            android:layout_marginTop="@dimen/margin"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
             app:lessonName="@{detailViewModel.timetable}"
-            app:layout_constraintTop_toBottomOf="@+id/detail_lesson_day"
+            app:layout_constraintTop_toBottomOf="@+id/detail_lesson_name_title"
             style="@style/CreateLessonTextView"/>
 
         <Button

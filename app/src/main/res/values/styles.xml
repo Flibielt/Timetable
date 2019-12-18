@@ -21,4 +21,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="CreateLessonTextViewTitle">
+        <item name="android:textSize">34dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
