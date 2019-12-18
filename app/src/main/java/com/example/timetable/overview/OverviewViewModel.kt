@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-enum class MarsApiStatus { LOADING, ERROR, DONE }
+enum class InternetDataStatus { LOADING, ERROR, DONE }
 
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
@@ -29,8 +29,8 @@ class OverviewViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(
         viewModelJob + Dispatchers.Main )
 
-    private val _status = MutableLiveData<MarsApiStatus>()
-    val status: LiveData<MarsApiStatus>
+    private val _status = MutableLiveData<InternetDataStatus>()
+    val status: LiveData<InternetDataStatus>
         get() = _status
 
     private val _properties = MutableLiveData<List<PlaceholderProperty>>()
@@ -38,25 +38,25 @@ class OverviewViewModel : ViewModel() {
         get() = _properties
 
     /**
-     * Call getMarsRealEstateProperties() on init so we can display status immediately.
+     * Call getInternetDataProperties() on init so we can display status immediately.
      */
     init {
-        getMarsRealEstateProperties()
+        getInternetDataProperties()
     }
 
     /**
-     * Sets the value of the status LiveData to the Mars API status.
+     * Sets the value of the status LiveData to the Internet Data API status.
      */
-    private fun getMarsRealEstateProperties() {
+    private fun getInternetDataProperties() {
         coroutineScope.launch {
             var getPropertiesDeferred = MarsApi.retrofitService.getProperties()
             try {
-                _status.value = MarsApiStatus.LOADING
+                _status.value = InternetDataStatus.LOADING
                 var listResult = getPropertiesDeferred.await()
-                _status.value = MarsApiStatus.DONE
+                _status.value = InternetDataStatus.DONE
                 _properties.value = listResult
             } catch (e: Exception) {
-                _status.value = MarsApiStatus.ERROR
+                _status.value = InternetDataStatus.ERROR
                 _properties.value = ArrayList()
             }
         }

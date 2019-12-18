@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.timetable.network.PlaceholderProperty
-import com.example.timetable.overview.MarsApiStatus
+import com.example.timetable.overview.InternetDataStatus
 import com.example.timetable.overview.PhotoGridAdapter
 
 @BindingAdapter("imageUrl")
@@ -33,17 +33,17 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<PlaceholderProperty>
 }
 
 @BindingAdapter("marsApiStatus")
-fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
+fun bindStatus(statusImageView: ImageView, status: InternetDataStatus?) {
     when (status) {
-        MarsApiStatus.LOADING -> {
+        InternetDataStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-        MarsApiStatus.ERROR -> {
+        InternetDataStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
-        MarsApiStatus.DONE -> {
+        InternetDataStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
     }
