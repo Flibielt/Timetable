@@ -15,7 +15,7 @@ class PhotoGridAdapter (private val onClickListener: OnClickListener) : ListAdap
             LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: PhotoGridAdapter.PlaceholderPropertyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PlaceholderPropertyViewHolder, position: Int) {
         val placeholderProperty = getItem(position)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(placeholderProperty)
