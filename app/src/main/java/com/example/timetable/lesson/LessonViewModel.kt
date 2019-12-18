@@ -27,7 +27,6 @@ class LessonViewModel (
     private val _day = MutableLiveData<String>()
     val lessonDay: LiveData<String>
         get() = _day
-    //todo: Lesson name and day changes does not appear on the UI
 
     private val _navigateToTimetable = MutableLiveData<Boolean?>()
     val navigateToTimetable: LiveData<Boolean?>
